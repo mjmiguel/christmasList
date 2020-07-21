@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack-dev-server --open\""
+    "dev": "cross-env NODE_ENV=development concurrently \"nodemon ./server/server.js\" \"webpack-dev-server --open --hot\""
   },
   "nodemonConfig": {
     "ignore": [
@@ -24,9 +24,10 @@
     "react-router-dom": "^4.3.1",
     "webpack": "^4.29.3",
     "bcryptjs": "^2.3.0",
-    "body-parser": "^1.14.2",
-    "mongoose": "4.4.1",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "pg": "^8.3.0",
+    "express": "^4.17.1",
+    "body-parser": "^1.14.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -37,6 +38,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^3.6.0",
     "eslint": "^7.5.0",
+    "eslint-plugin-react": "^7.20.3",
     "nodemon": "^1.18.9",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
