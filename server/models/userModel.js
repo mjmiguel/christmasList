@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-const { PG_URI } = process.env.PG_URI;
+const { PG_URI } = process.env;
 
 // create a new pool here using the connection string above
 const pool = new Pool({
@@ -9,6 +9,12 @@ const pool = new Pool({
 });
 
 // Adding some notes about the database here will be helpful for future you or other developers.
+
+// user_id SERIAL PRIMARY KEY,
+// name VARCHAR(20),
+// password VARCHAR(50),
+// wishlist VARCHAR(1000),
+// giftee VARCHAR(20)
 
 
 // We export an object that contains a property called query,

@@ -1,5 +1,4 @@
 const path = require('path');
-const { HashedModuleIdsPlugin } = require('webpack');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -10,24 +9,33 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.jsx?/,
-        exclude: '/node/modules/',
+      {
+        test: /\.jsx?/,
+        exclude: '/node_modules/',
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-          }
-        }
+          },
+        },
       },
-      { test: /\.s?css/,
+      {
+        test: /\.s?css/,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-    ]
+    ],
   },
   devServer: {
     publicPath: '/build/',
     proxy: {
-      //non static routes to server
-    }
+      '/users': 'http:localhost:3000',
+    },
   },
-}
+  resolve: {
+    // Enable importing JS / JSX files without specifying their extension
+    extensions: ['.js', '.jsx'],
+    // hail mary
+    modules: ['node_modules'],
+  },
+};

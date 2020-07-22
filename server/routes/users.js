@@ -1,16 +1,19 @@
-// need to require userController
-// need to list get, update, add routes for users here
-// need to export
 const express = require('express');
-const userController = require('../controllers/userControllers');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
+// route to get a specific person from req.params
+router.get('/:id', userController.getUser, (req, res) => {
+  res.status(200).json(res.locals.users);
+});
+
 
 // get everyone in the database
-router.get('/') //middleware to get all users)
+router.get('/', userController.getAllUsers, (req, res) => {
+  res.status(200).json(res.locals.users);
+});
 
-// route to get a specific person from req.params
 
 // route to update wishlist
 

@@ -2,11 +2,11 @@
   "name": "solo-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./client/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
-    "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development concurrently \"nodemon ./server/server.js\" \"webpack-dev-server --open --hot\""
+    "build": "cross-env NODE_ENV=production webpack -display-error-details",
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open --hot\" \"nodemon ./server/server.js\""
   },
   "nodemonConfig": {
     "ignore": [
@@ -38,8 +38,12 @@
     "cross-env": "^5.2.0",
     "css-loader": "^3.6.0",
     "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
-    "nodemon": "^1.18.9",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "nodemon": "^2.0.4",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
