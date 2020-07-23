@@ -26,6 +26,10 @@ const QueryBox = (props) => {
         setFoundList(users[i].wishlist);
       }
     }
+
+    // INITIAL STATE FOR HOOKS ARE RESET EACH TIME A SELECTION IS MADE
+    // FIX THIS. THAT"S WHY THE LISTS ARENT WORKING
+
     console.log('found a match ', user, foundList);
   };
   
