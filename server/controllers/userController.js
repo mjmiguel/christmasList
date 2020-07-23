@@ -27,10 +27,10 @@ userController.getUser = (req, res, next) => {
 
 //  update wishlist
 userController.updateWishList = (req, res, next) => {
-  const { user, wishlist } = req.body;
+  const { userToSend, userListToSend } = req.body;
   const queryString = 'UPDATE users SET wishlist = $1 WHERE name = $2 RETURNING name, wishlist AS new_wishlist';
-  const params = [wishlist, user];
-  console.log(req.body);
+  const params = [userListToSend, userToSend];
+  console.log('req body ', req.body);
   db.query(queryString, params)
     .then((updatedUser) => {
       res.locals.user = updatedUser.rows[0];

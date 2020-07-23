@@ -30,9 +30,6 @@ class Home extends Component {
       .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
   }
 
-  // method to handle click on form submit
-  // get user info from form
-
   render() {
     const { users, usersFetched } = this.state;
 

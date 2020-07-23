@@ -7,9 +7,19 @@ import React, { useState } from 'react';
 
 const QueryBox = (props) => {
   const { users } = props;
-  if (!users) return null;
+  if (!users) {
+    return (
+      <div>
+        <h3>LOADIN...</h3>
+      </div>
+    );
+  }
   const [user, setUser] = useState(users[0].name);
-  const [foundList, setFoundList] = useState(users[0].wishlist);
+  const [userList, setUserList] = useState(null);
+  const mappedLists = users.reduce((acc, curr) => {
+    acc[curr.name] = curr.wishlist;
+    return acc;
+  }, {});
 
   const options = [];
   users.forEach((user) => {
@@ -18,32 +28,26 @@ const QueryBox = (props) => {
     );
   });
   const handleSubmit = (e) => {
-    // fetch user data with hooked state
+    // fetch user data from mappedList
     e.preventDefault();
-    for (let i = 0; i < users.length; i += 1) {
-      if (users[i].name === e.target.value) {
-        console.log('target val ', e.target.value);
-        setFoundList(users[i].wishlist);
-      }
-    }
-
-    // INITIAL STATE FOR HOOKS ARE RESET EACH TIME A SELECTION IS MADE
-    // FIX THIS. THAT"S WHY THE LISTS ARENT WORKING
-
-    console.log('found a match ', user, foundList);
+    setUserList(mappedLists[user]);
   };
-  
-  console.log(users);
+
   return (
     <div>
       <h3>Query Box</h3>
-      <form onSubmit={handleSubmit}>
+      <form id="queryBox" onSubmit={handleSubmit}>
         <label htmlFor="list">View a wishlist</label>
         <br />
         <select id="list" onChange={(e) => setUser(e.target.value)}>
           {options}
         </select>
+        <br />
         <input type="submit" value="submit" />
+        <br />
+        <div className="wishlist-display">
+          {userList && (<div>{userList}</div>)}
+        </div>
       </form>
     </div>
   );

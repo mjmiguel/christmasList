@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 
 // specified in .env file
@@ -10,8 +9,8 @@ const app = express();
 const userRouter = require('./routes/users');
 
 // body-parser to parse body for controllers
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // send requests for user to the userRouter
 app.use('/users', userRouter);

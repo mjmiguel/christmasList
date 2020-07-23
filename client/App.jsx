@@ -9,6 +9,7 @@ import SubmitList from './components/SubmitList';
 import Next from './components/Next';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ErrorPage from './components/Error';
 
 
 // import stylesheet
@@ -24,6 +25,7 @@ const App = props => {
           <Route exact path="/submit" component={SubmitList} />
           <Route exact path="/about" component={About} />
           <Route exact path="/next" component={Next} />
+          <Route exact path="/error" component={ErrorPage} />
         </Switch>
       </main>
       <Footer />

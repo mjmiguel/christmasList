@@ -16,7 +16,7 @@ router.get('/', userController.getAllUsers, (req, res) => {
 
 // route to update wishlist
 router.post('/', userController.updateWishList, (req, res) => {
-  res.status(200).json(res.locals.user);
+  res.status(201).json(res.locals.user);
 });
 // route to add user
 
