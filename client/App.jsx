@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // import other components
@@ -7,6 +7,9 @@ import Home from './components/Home';
 import About from './components/About';
 import SubmitList from './components/SubmitList';
 import Next from './components/Next';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 
 // import stylesheet
 // import ./scss/main.scss
@@ -14,22 +17,16 @@ import Next from './components/Next';
 const App = props => {
   return (
     <div className="router">
+      <Header />
       <main>
         <Switch>
-          <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route exact path="/submit">
-            <SubmitList/>
-          </Route>
-          <Route exact path="/about">
-            <About/>
-          </Route>
-          <Route exact path="/next">
-            <Next />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/submit" component={SubmitList} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/next" component={Next} />
         </Switch>
       </main>
+      <Footer />
     </div>
   );
 };

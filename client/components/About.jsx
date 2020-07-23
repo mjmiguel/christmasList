@@ -1,17 +1,14 @@
 /* eslint-disable arrow-body-style */
-import React, { Component } from 'react';
-
-// import other components
-import Home from './Home';
+import React from 'react';
 
 // import stylesheet
 // import ./scss/main.scss
 
 const About = props => {
   return (
-    <div className="router">
+    <div>
       <main>
-        <h1>about</h1>
+        <h1>stuff about michael with funny gif</h1>
       </main>
     </div>
   );

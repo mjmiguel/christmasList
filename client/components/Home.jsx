@@ -1,54 +1,64 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { HotModuleReplacementPlugin } from 'webpack';
 
 // import other comps
 // ---> giftee/gifter table
 // ---> wish list look up
 
-// class home 
+// class home
 // fetch users list and populate table || show 'loading'
 // store users in state
+import UserTable from './UsersTable';
+import QueryBox from './QueryBox';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usersFetched: false,
-      users: {},
+      users: null,
     };
-    // methods to fetch users
   }
 
   componentDidMount() {
     // get initial list of users
     fetch('/users')
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((users) => {
-        // add users to state
-        // change usersFetched: true;
+        this.setState({ usersFetched: true, users });
       })
-      .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err))
+      .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
   }
 
+  // method to handle click on form submit
+  // get user info from form
+
   render() {
-    const { users } = this.state;
-    if (!users) return null;
+    const { users, usersFetched } = this.state;
 
     return (
-      <div className='main-container'>
-        <div className='container'>
-
+      <div className="main-container">
+        <div className="container">
+          <h1>Welcome to my page</h1>
+          <Link to={
+            {
+              pathname: '/submit',
+              users,
+              usersFetched,
+            }
+          }
+          >
+            <button type="submit">Submit your List</button>
+          </Link>
         </div>
-        <div className='container'>
-
+        <div className="container">
+          <UserTable users={users} usersFetched={usersFetched} />
         </div>
-        <div className='container'>
-
+        <div className="container">
+          <QueryBox users={users} />
         </div>
       </div>
     );
-    // get list of users and populate a div with each one with their giftee
   }
 }
 

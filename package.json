@@ -5,8 +5,8 @@
   "main": "./client/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
-    "build": "cross-env NODE_ENV=production webpack -display-error-details",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open --hot\" \"nodemon ./server/server.js\""
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development concurrently \"nodemon ./server/server.js\" \"webpack-dev-server --open --hot -display-error-details\""
   },
   "nodemonConfig": {
     "ignore": [
@@ -43,6 +43,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "html-webpack-plugin": "^4.3.0",
     "nodemon": "^2.0.4",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",

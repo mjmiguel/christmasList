@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -6,12 +7,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        exclude: '/node_modules/',
+        test: /\.(js|jsx)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -20,7 +22,7 @@ module.exports = {
         },
       },
       {
-        test: /\.s?css/,
+        test: /\.(css|scss)/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
@@ -28,14 +30,18 @@ module.exports = {
   },
   devServer: {
     publicPath: '/build/',
+    historyApiFallback: true,
     proxy: {
-      '/users': 'http:localhost:3000',
+      '/users': 'http://localhost:3000',
     },
   },
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
     extensions: ['.js', '.jsx'],
-    // hail mary
-    modules: ['node_modules'],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
 };
