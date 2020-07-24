@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import pic from '../assets/angery.jpeg';
 // import other components
 
 // import stylesheet
@@ -8,9 +9,13 @@ import React from 'react';
 
 const ErrorPage = (props) => {
   return (
-    <div>
-      <h3>whoopsies there was a problem with something</h3>
-      <h3>try going back to the home page</h3>
+    <div className="container">
+      <img src={pic} alt="dog" />
+      <p>You didn't select a name when submitting your list</p>
+      <h4>Would you like to try again?</h4>
+      <Link to="/submit">
+        <button type="button">Try Again</button>
+      </Link>
     </div>
   );
 };

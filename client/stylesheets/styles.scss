@@ -1,0 +1,180 @@
+/* reset default styles */
+@import 'variables.scss';
+@import url(https://fonts.googleapis.com/css?family=Monoton&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Knewave&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Averia+Serif+Libre&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap);
+
+html, body {
+  height: 100%;
+  text-align: center;
+}
+
+body {
+  background: $background-color;
+  color: $body-text;
+  font-size: 1.5rem;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+// ----------------------------------------------------------------------------------------
+//menus
+.form-control {
+  color: blueviolet !important;
+	background-color: transparent !important;
+  border: 1px solid $body-text;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  margin: 30px 30px 30px 30px;
+}
+
+// ----------------------------------------------------------------------------------------
+//images
+
+img {
+  border-radius: 5px;
+}
+
+#splash {
+  border-radius: 300px;
+}
+
+.loading {
+  animation: rotation 0.5s infinite linear;
+}
+// for rotating
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+// ----------------------------------------------------------------------------------------
+//all links
+a {
+  color: $body-text;
+  text-decoration: none;
+  :visited {
+    color: $body-text;
+  }
+  :hover {
+    color: $hover-color;
+  }
+}
+
+// ----------------------------------------------------------------------------------------
+// header
+
+header {
+  text-align: center;
+  font-family: $Monoton;
+  font-size: 2rem;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+// ----------------------------------------------------------------------------------------
+// footer 
+
+footer {
+  text-align: left;
+  font-size: 0.5rem;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#splash {
+  margin-top: 100px;
+}
+
+
+// ----------------------------------------------------------------------------------------
+// gifter - giftee table
+.header {
+  text-align: center;
+	font-size: 2.4rem;
+	font-family: 'Knewave', cursive;
+}
+
+.table-row {
+  border-color: white;
+  :hover {
+    font-size: 2.0rem;
+    font-weight: bold;
+  }
+}
+
+tr {
+  text-align: center;
+  font-family: $Averia;
+  font-size: 1.8rem;
+}
+
+// ----------------------------------------------------------------------------------------
+// query box
+
+.list-card {
+  background-color: #000;
+	border-radius: 5px;
+  border: 2px solid $body-text;
+  margin: 30px 30px 30px 30px;
+}
+
+#list-card-list {
+  padding: 20px 20px 20px 20px;
+  font-family: 'Averia Serif Libre', cursive;
+  font-size: 1.5rem;
+}
+
+.wishlist-display {
+  margin: 30px 30px 30px 30px;
+}
+
+// ----------------------------------------------------------------------------------------
+// list submission page
+
+textarea {
+  color: $body-text !important;
+	background-color: #000 !important;
+	border: 1px solid $body-text;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+// ----------------------------------------------------------------------------------------
+// buttons
+
+button, input[type=button], input[type=submit] {
+  background-color: transparent;
+  border-color: blueviolet;
+  font-size: 2rem;
+  font-family: 'Knewave', cursive;
+  color: #ff745e;
+  border-radius: 10px;
+  :hover {
+    color: $hover-color;
+  }
+}
+
+

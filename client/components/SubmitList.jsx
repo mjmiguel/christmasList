@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-
-// import stylesheet
-// import ./scss/main.scss
+import bubs from '../assets/bubs.png';
 
 class SubmitList extends Component {
   constructor(props) {
@@ -52,7 +49,6 @@ class SubmitList extends Component {
     fetch('/users', settings)
       .then((res) => res.json())
       .then((data) => {
-        console.log('data ', data);
         this.props.history.push('/next');
       }).catch((err) => {
         console.log(err);
@@ -65,7 +61,7 @@ class SubmitList extends Component {
     if (!usersFetched) {
       return (
         <div>
-          <h3>LOADIN...</h3>
+          <img className="loading" src={bubs} alt="bubs" height="200" width="200" />
         </div>
       );
     }
@@ -78,13 +74,13 @@ class SubmitList extends Component {
     });
 
     return (
-      <div>
+      <div className="container">
         <main>
-          <h1>SubmitList</h1>
+          <h3 className="header">Submit your list</h3>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Who are you?</label>
             <br />
-            <select id="name" onChange={this.handleChange}>
+            <select id="name" className="form-control" onChange={this.handleChange}>
               <option value="Choose">Choose...</option>
               {options}
             </select>

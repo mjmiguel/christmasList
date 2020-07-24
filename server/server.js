@@ -12,6 +12,9 @@ const userRouter = require('./routes/users');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// serve stylesheets and pictures???
+app.use(express.static(path.resolve(__dirname, 'client')));
+
 // send requests for user to the userRouter
 app.use('/users', userRouter);
 

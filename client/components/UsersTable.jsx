@@ -1,20 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React from 'react';
-
-// import stylesheet
-// import ./scss/main.scss
+import bubs from '../assets/bubs.png';
 
 const UsersTable = (props) => {
   const { users, usersFetched } = props;
   if (!usersFetched) {
     return (
       <div>
-        <h1>gifters and giftee</h1>
-        <h1>A table of users</h1>
-        <div className="col">
-          <h3>Loading users, please wait...</h3>
-        </div>
+        <img className="loading" src={bubs} alt="bubs" height="200px" width="200px" />
       </div>
     );
   }
@@ -23,9 +17,9 @@ const UsersTable = (props) => {
   if (usersFetched) {
     users.forEach((user) => {
       rows.push(
-        <tr>
+        <tr className="table-row">
           <td>{user.name}</td>
-          <br></br>
+          <td> ----------> </td>
           <td>{user.giftee}</td>
         </tr>,
       );
@@ -34,12 +28,14 @@ const UsersTable = (props) => {
 
   return (
     <div>
-      <div className="col">
-        <table className="table table-sm">
+      <div>
+        <table>
           <tbody>
             <tr>
-              <td><h3>Gifter</h3></td>
-              <td><h3>Giftee</h3></td>
+              <th className="header"><h3>Gifter</h3></th>
+              <br />
+              <br />
+              <th className="header"><h3>Giftee</h3></th>
             </tr>
             {rows}
           </tbody>

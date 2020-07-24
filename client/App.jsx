@@ -11,9 +11,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorPage from './components/Error';
 
-
 // import stylesheet
-// import ./scss/main.scss
+import './stylesheets/styles.scss';
 
 const App = props => {
   return (

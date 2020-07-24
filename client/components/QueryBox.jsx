@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-
-// import stylesheet
-// import ./scss/main.scss
+import bubs from '../assets/bubs.png';
 
 const QueryBox = (props) => {
   const { users } = props;
   if (!users) {
     return (
       <div>
-        <h3>LOADIN...</h3>
+        <img className="loading" src={bubs} alt="bubs" height="200px" width="200px" />
       </div>
     );
   }
@@ -35,18 +33,22 @@ const QueryBox = (props) => {
 
   return (
     <div>
-      <h3>Query Box</h3>
+      <h3 className="header">List Lookup</h3>
       <form id="queryBox" onSubmit={handleSubmit}>
         <label htmlFor="list">View a wishlist</label>
         <br />
-        <select id="list" onChange={(e) => setUser(e.target.value)}>
+        <select id="list" className="form-control" onChange={(e) => setUser(e.target.value)}>
           {options}
         </select>
         <br />
         <input type="submit" value="submit" />
         <br />
         <div className="wishlist-display">
-          {userList && (<div>{userList}</div>)}
+          {userList && (
+          <div className="list-card">
+            <section id="list-card-list">{userList}</section>
+          </div>
+          )}
         </div>
       </form>
     </div>
