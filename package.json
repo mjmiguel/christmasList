@@ -4,6 +4,7 @@
   "description": "",
   "main": "./client/index.js",
   "scripts": {
+    "test": "jest --verbose",
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development concurrently \"nodemon ./server/server.js\" \"webpack-dev-server --open --hot -display-error-details\""
@@ -37,6 +38,8 @@
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.6.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
     "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -44,6 +47,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "react-hot-loader": "^4.12.21",
     "sass": "^1.26.10",
