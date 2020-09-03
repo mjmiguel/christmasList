@@ -11,6 +11,9 @@
   },
   "jest": {
     "verbose": true,
+    "setupFiles": [
+      "<rootDir>/__tests__/enzyme.js"
+    ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
     }
@@ -24,17 +27,18 @@
   "author": "michael",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.14.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "pg": "^8.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.3.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "webpack": "^4.29.3",
-    "bcryptjs": "^2.3.0",
-    "dotenv": "^8.2.0",
-    "pg": "^8.3.0",
-    "express": "^4.17.1",
-    "body-parser": "^1.14.2"
+    "webpack": "^4.29.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

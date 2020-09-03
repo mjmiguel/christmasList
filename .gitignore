@@ -2,3 +2,7 @@ node_modules
 package-lock.json
 .env
 .eslintrc.json
+
+# Testing folders
+test-coverage
+__snapshots__
