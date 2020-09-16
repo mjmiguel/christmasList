@@ -15,6 +15,7 @@ class Home extends Component {
     };
   }
 
+  // todo: add environment variable for absolute path during testing
   componentDidMount() {
     // get initial list of users
     fetch('/users')
