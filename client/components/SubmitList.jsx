@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React, { Component } from 'react';
+import fetch from 'node-fetch';
 import bubs from '../assets/bubs.png';
 
 class SubmitList extends Component {
@@ -17,13 +18,15 @@ class SubmitList extends Component {
   }
 
   componentDidMount() {
-    // get initial list of users
-    fetch('/users')
-      .then((res) => res.json())
-      .then((users) => {
-        this.setState({ usersFetched: true, users });
-      })
-      .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
+    if (process.env.NODE_ENV !== 'test') {
+      // get initial list of users
+      fetch('/users')
+        .then((res) => res.json())
+        .then((users) => {
+          this.setState({ usersFetched: true, users });
+        })
+        .catch((err) => console.log('SubmitList.componentDidMount: get users: ERROR: ', err));
+    }
   }
 
   // update state based on user input

@@ -12,7 +12,7 @@
   "jest": {
     "verbose": true,
     "setupFiles": [
-      "<rootDir>/__tests__/enzyme.js"
+      "<rootDir>/__tests__/setupTests.js"
     ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
