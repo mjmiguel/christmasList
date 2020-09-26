@@ -17,13 +17,15 @@ class Home extends Component {
 
   // todo: add environment variable for absolute path during testing
   componentDidMount() {
-    // get initial list of users
-    fetch('/users')
-      .then((res) => res.json())
-      .then((users) => {
-        this.setState({ usersFetched: true, users });
-      })
-      .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
+    if (process.env.NODE_ENV !== 'test') {
+      // get initial list of users
+      fetch('/users')
+        .then((res) => res.json())
+        .then((users) => {
+          this.setState({ usersFetched: true, users });
+        })
+        .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
+    }
   }
 
   render() {
