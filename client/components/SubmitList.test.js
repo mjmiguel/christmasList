@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import SubmitList from '../../client/components/SubmitList';
+import SubmitList from './SubmitList';
 // todo: close server after tests complete
 
 describe('SubmitList', () => {
@@ -9,8 +9,3 @@ describe('SubmitList', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
-
-// afterAll(done => {
-//   // close server
-//   done();
-// });
