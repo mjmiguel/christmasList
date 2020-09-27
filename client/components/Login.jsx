@@ -17,22 +17,36 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form submit', e.target.value);
     if (process.env !== 'test') {
       if (password.length > 0) {
         setLenValidation(true);
+        console.log('form submitted!');
         // send fetch
         // set validation
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password }),
+        };
+        fetch('/auth/login', options)
+          .then()
+          .then()
+          .catch((error) => {
+            console.log('Error in Login.fetch: ', error);
+          });
       } else {
         // render some text validation
         setLenValidation(false);
+        console.log('length too short');
       }
     }
   };
 
   return (
     <div>
-      <form action={handleSubmit}>
+      <form onSubmit={(e) => { handleSubmit(e); }}>
         <label htmlFor="password">Password:</label>
         <input
           value={password}
