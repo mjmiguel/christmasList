@@ -2,6 +2,7 @@ node_modules
 package-lock.json
 .env
 .eslintrc.json
+.sql
 
 # Testing folders
 test-coverage
