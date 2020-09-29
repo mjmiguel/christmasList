@@ -17,7 +17,7 @@ const authController = {};
 
 authController.checkLogin = (req, res, next) => {
   // boilerplate for now to rest middleware
-  const password = 'password';
+  const password = req.body;
   if (password === 'password') {
     res.locals.authorized = true;
     next();

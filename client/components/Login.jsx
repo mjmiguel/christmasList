@@ -31,8 +31,10 @@ const Login = (props) => {
           body: JSON.stringify({ password }),
         };
         fetch('/auth/login', options)
-          .then()
-          .then()
+          .then((res) => res.json())
+          .then((data) => {
+            console.log('data', data);
+          })
           .catch((error) => {
             console.log('Error in Login.fetch: ', error);
           });
