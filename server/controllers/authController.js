@@ -15,4 +15,16 @@ const authController = {};
 //     }).catch((err) => next(err));
 // };
 
+authController.checkLogin = (req, res, next) => {
+  // boilerplate for now to rest middleware
+  const password = 'password';
+  if (password === 'password') {
+    res.locals.authorized = true;
+    next();
+  } else {
+    res.locals.authorized = false;
+    next();
+  }
+};
+
 module.exports = authController;
