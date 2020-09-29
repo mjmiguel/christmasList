@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 
 const Login = (props) => {
   const [password, setPassword] = useState('');
-  const [validation, setValidation] = useState(false);
+  const [authValidation, setAuthValidation] = useState(null);
   const [lenValidation, setLenValidation] = useState(true);
 
   useEffect(() => {
@@ -34,6 +34,12 @@ const Login = (props) => {
           .then((res) => res.json())
           .then((data) => {
             console.log('data', data);
+            if (data.authorized) {
+              setAuthValidation(true);
+              props.history.push('/');
+            } else {
+              setAuthValidation(false);
+            }
           })
           .catch((error) => {
             console.log('Error in Login.fetch: ', error);
@@ -58,6 +64,7 @@ const Login = (props) => {
           onChange={(e) => { handleChange(e); }}
         />
         {lenValidation ? null : <div>probably not a valid password</div>}
+        {authValidation === false ? <div>incorrect password</div> : null}
         <input 
           type="submit"
           value="Submit"

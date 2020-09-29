@@ -3,6 +3,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // import other components
+import Login from './components/Login';
 import Home from './components/Home';
 import About from './components/About';
 import SubmitList from './components/SubmitList';
@@ -20,6 +21,7 @@ const App = props => {
       <Header />
       <main>
         <Switch>
+          <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/submit" component={SubmitList} />
           <Route exact path="/about" component={About} />

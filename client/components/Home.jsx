@@ -10,6 +10,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
       usersFetched: false,
       users: null,
     };
@@ -17,6 +18,7 @@ class Home extends Component {
 
   // todo: add environment variable for absolute path during testing
   componentDidMount() {
+    if (!this.state.loggedIn) this.props.history.push('/login');
     if (process.env.NODE_ENV !== 'test') {
       // get initial list of users
       fetch('/users')
