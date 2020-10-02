@@ -17,7 +17,16 @@ import PrivateRoute from './components/PrivateRoute';
 // import stylesheet
 import './stylesheets/styles.scss';
 
-const App = props => {
+const App = (props) => {
+  const existingTokens = JSON.parse(localStorage.getItem('tokens'));
+  const [authTokens, setAuthTokens] = useState(existingTokens);
+
+  const setTokens = (data) => {
+    localStorage.setItem('tokens', JSON.stringify(data));
+    setAuthTokens(data);
+  };
+
+
   return (
     <AuthContext.Provider value={false}>
       <BrowserRouter>
