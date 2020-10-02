@@ -35,6 +35,11 @@ const Login = (props) => {
           .then((data) => {
             console.log('data', data);
             if (data.authorized) {
+
+              // TODO: add valid tokens in express
+
+
+              console.log('dataaaa', data)
               setAuthTokens(data.data);
               setAuthValidation(true);
             } else {
