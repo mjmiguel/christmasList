@@ -5,7 +5,7 @@ import App from './App';
 
 render(
   <BrowserRouter>
-    <App />
+    <App isLoggedIn="true" />
   </BrowserRouter>,
   document.getElementById('root'),
 );
