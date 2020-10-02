@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import fetch from 'node-fetch';
+import { useAuth } from '../context/auth';
 
 const Login = (props) => {
   const [password, setPassword] = useState('');
   const [authValidation, setAuthValidation] = useState(null);
   const [lenValidation, setLenValidation] = useState(true);
+  const referer = props.location.state.referer || '/';
+  
+  const { setAuthTokens } = useAuth();
 
   useEffect(() => {
 
   }, [lenValidation]);
-
-  const handleChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,8 +35,8 @@ const Login = (props) => {
           .then((data) => {
             console.log('data', data);
             if (data.authorized) {
+              setAuthTokens(data.data);
               setAuthValidation(true);
-              props.history.push('/');
             } else {
               setAuthValidation(false);
             }
@@ -52,6 +52,12 @@ const Login = (props) => {
     }
   };
 
+  // check auth validation before render
+  // redirect to referer page
+  if (authValidation) {
+    return <Redirect to={referer} />;
+  }
+
   return (
     <div>
       <form onSubmit={(e) => { handleSubmit(e); }}>
@@ -61,11 +67,11 @@ const Login = (props) => {
           type="password"
           id="login-password"
           name="login-password"
-          onChange={(e) => { handleChange(e); }}
+          onChange={(e) => { setPassword(e.target.value); }}
         />
         {lenValidation ? null : <div>probably not a valid password</div>}
         {authValidation === false ? <div>incorrect password</div> : null}
-        <input 
+        <input
           type="submit"
           value="Submit"
         />

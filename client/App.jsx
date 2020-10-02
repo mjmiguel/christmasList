@@ -26,9 +26,8 @@ const App = (props) => {
     setAuthTokens(data);
   };
 
-
   return (
-    <AuthContext.Provider value={false}>
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <BrowserRouter>
         <div className="router">
           <Header />
