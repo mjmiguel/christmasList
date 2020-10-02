@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import fetch from 'node-fetch';
 import dog from '../assets/splash.png';
 
-import UserTable from './UsersTable';
-import QueryBox from './QueryBox';
+import UserTable from '../components/UsersTable';
+import QueryBox from '../components/QueryBox';
 
 class Home extends Component {
   constructor(props) {

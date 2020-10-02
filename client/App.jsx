@@ -4,14 +4,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AuthContext } from './context/auth';
 
 // import other components
-import Login from './components/Login';
-import Home from './components/Home';
-import About from './components/About';
-import SubmitList from './components/SubmitList';
-import Next from './components/Next';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import About from './pages/About';
+import SubmitList from './pages/SubmitList';
+import Next from './pages/Next';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ErrorPage from './components/Error';
+import ErrorPage from './pages/Error';
 import PrivateRoute from './components/PrivateRoute';
 
 // import stylesheet
