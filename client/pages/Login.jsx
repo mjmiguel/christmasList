@@ -40,7 +40,7 @@ const Login = (props) => {
 
 
               console.log('dataaaa', data)
-              setAuthTokens(data.data);
+              setAuthTokens('some token');
               setAuthValidation(true);
             } else {
               setAuthValidation(false);
