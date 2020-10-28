@@ -21,7 +21,7 @@ const UsersTable = (props) => {
           <td>{user.name}</td>
           <td> ----------> </td>
           <td>{user.giftee}</td>
-        </tr>,
+        </tr>
       );
     });
   }
@@ -30,13 +30,12 @@ const UsersTable = (props) => {
     <div>
       <div>
         <table>
+          <thead>
+            <th><h3>Gifter</h3></th>
+            <th></th>
+            <th><h3>Giftee</h3></th>
+          </thead>
           <tbody>
-            <tr>
-              <th className="header"><h3>Gifter</h3></th>
-              <br />
-              <br />
-              <th className="header"><h3>Giftee</h3></th>
-            </tr>
             {rows}
           </tbody>
         </table>

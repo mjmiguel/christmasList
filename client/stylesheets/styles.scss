@@ -109,24 +109,21 @@ footer {
 
 // ----------------------------------------------------------------------------------------
 // gifter - giftee table
-.header {
+th {
   text-align: center;
 	font-size: 2.4rem;
 	font-family: 'Knewave', cursive;
 }
 
-.table-row {
-  border-color: white;
-  :hover {
-    font-size: 2.0rem;
-    font-weight: bold;
-  }
-}
 
 tr {
   text-align: center;
   font-family: $Averia;
   font-size: 1.8rem;
+}
+
+tr:hover {
+  color: greenyellow;
 }
 
 // ----------------------------------------------------------------------------------------
