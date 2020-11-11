@@ -8,12 +8,10 @@ const Login = (props) => {
   const [authValidation, setAuthValidation] = useState(null);
   const [lenValidation, setLenValidation] = useState(true);
   const referer = props.location.state.referer || '/';
-  
+
   const { setAuthTokens } = useAuth();
 
-  useEffect(() => {
-
-  }, [lenValidation]);
+  useEffect(() => {}, [lenValidation]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,11 +33,9 @@ const Login = (props) => {
           .then((data) => {
             console.log('data', data);
             if (data.authorized) {
-
               // TODO: add valid tokens in express
 
-
-              console.log('dataaaa', data)
+              console.log('dataaaa', data);
               setAuthTokens('some token');
               setAuthValidation(true);
             } else {
@@ -64,22 +60,31 @@ const Login = (props) => {
   }
 
   return (
-    <div>
-      <form onSubmit={(e) => { handleSubmit(e); }}>
-        <label htmlFor="password">Password:</label>
+    <div className="container">
+      <form
+        id="login-form"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
+        <label htmlFor="password">password:</label>
+        <br />
         <input
+          autoFocus="true"
+          className="form-control"
           value={password}
           type="password"
           id="login-password"
           name="login-password"
-          onChange={(e) => { setPassword(e.target.value); }}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         {lenValidation ? null : <div>probably not a valid password</div>}
         {authValidation === false ? <div>incorrect password</div> : null}
-        <input
-          type="submit"
-          value="Submit"
-        />
+        <br />
+        <br />
+        <input type="submit" value="submit" />
       </form>
     </div>
   );
