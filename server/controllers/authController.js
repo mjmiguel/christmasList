@@ -28,4 +28,11 @@ authController.checkLogin = (req, res, next) => {
   }
 };
 
+// protect route
+// verify token
+
+// verify token
+
+// create token
+
 module.exports = authController;
