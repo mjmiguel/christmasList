@@ -9,7 +9,9 @@ const { SITE_LOGIN_PASSWORD } = process.env;
 //  update passwords for ALL users
 authController.updatePassword = (req, res, next) => {
   bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
-    bcrypt.hash(SITE_LOGIN_PASSWORD, salt, function (err, hash) {
+    if (err) next({ location: 'bcryptGenSalt', ...err });
+    bcrypt.hash(SITE_LOGIN_PASSWORD, salt, (err, hash) => {
+      if (err) next({ location: 'bcryptHash', ...err });
       // Store hash in DB.
       const queryString = 'UPDATE users SET password = $1';
       const params = [hash];
