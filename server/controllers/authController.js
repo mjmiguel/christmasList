@@ -23,24 +23,20 @@ authController.updatePassword = (req, res, next) => {
   });
 };
 
-authController.checkLogin = (req, res, next) => {
+authController.checkLogin = async (req, res, next) => {
   const { password } = req.body;
   const queryString = 'SELECT * FROM users WHERE id=1';
-  console.log('req body', req.body);
-  db.query(queryString)
-    .then((users) => {
-      console.log('users', users.rows[0]);
-      res.locals.users = users.rows[0];
-      bcrypt
-        .compare(password, res.locals.users.password)
-        .then((res) => {
-          console.log('res', res);
-          res ? (res.locals.authorized = true) : (res.locals.authorized = false);
-          next();
-        })
-        .catch((err) => next({ location: 'bcrypt-compare', ...err }));
-    })
-    .catch((err) => next({ location: 'checklogin-getuser', ...err }));
+
+  // get one user to compare password
+  const user = await db.query(queryString);
+  res.locals.user = user.rows[0];
+
+  // compare password to db hash
+  bcrypt.compare(password, res.locals.user.password, (err, result) => {
+    if (err) next({ location: 'bcrypt-compare', ...err });
+    result ? (res.locals.authorized = true) : (res.locals.authorized = false);
+    next();
+  });
 };
 
 // protect route
