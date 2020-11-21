@@ -1,4 +1,5 @@
 const db = require('../models/userModel');
+const bcrypt = require('bcryptjs');
 
 const authController = {};
 
@@ -18,14 +19,21 @@ const authController = {};
 authController.checkLogin = (req, res, next) => {
   // boilerplate for now to rest middleware
   const { password } = req.body;
+  const queryString = 'SELECT * FROM users WHERE id=1';
+  // const params = [oneUser];
   console.log('req body', req.body);
-  if (password === 'password') {
-    res.locals.authorized = true;
-    next();
-  } else {
-    res.locals.authorized = false;
-    next();
-  }
+  db.query(queryString)
+    .then((users) => {
+      res.locals.users = users.rows;
+      bcrypt
+        .compare(password, res.locals.user.password)
+        .then((res) => {
+          res ? (res.locals.authorized = true) : (res.locals.authorized = false);
+          next();
+        })
+        .catch((err) => next(err));
+    })
+    .catch((err) => next(err));
 };
 
 // protect route
