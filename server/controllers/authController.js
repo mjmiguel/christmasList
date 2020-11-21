@@ -24,16 +24,17 @@ authController.checkLogin = (req, res, next) => {
   console.log('req body', req.body);
   db.query(queryString)
     .then((users) => {
-      res.locals.users = users.rows;
+      console.log('users', users);
+      res.locals.users = users.rows[0];
       bcrypt
-        .compare(password, res.locals.user.password)
+        .compare(password, res.locals.users.password)
         .then((res) => {
           res ? (res.locals.authorized = true) : (res.locals.authorized = false);
           next();
         })
-        .catch((err) => next(err));
+        .catch((err) => next({ location: 'bcrypt-compare', ...err }));
     })
-    .catch((err) => next(err));
+    .catch((err) => next({ location: 'checklogin-getuser', ...err }));
 };
 
 // protect route
