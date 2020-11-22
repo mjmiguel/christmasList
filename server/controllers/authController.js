@@ -45,7 +45,6 @@ authController.checkLogin = async (req, res, next) => {
 
 authController.setToken = (req, res, next) => {
   jwt.sign({ I: 'amCool' }, JWT_PRIVATE_KEY, (err, token) => {
-    console.log('TOKEN', token);
     if (err) next({ location: 'setToken', ...err });
     // set token
     res.locals.token = token;
