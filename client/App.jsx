@@ -16,14 +16,37 @@ import PrivateRoute from './components/PrivateRoute';
 
 // import stylesheet
 import './stylesheets/styles.scss';
+import fetch from 'node-fetch';
 
 const App = (props) => {
   const existingTokens = JSON.parse(localStorage.getItem('tokens'));
   const [authTokens, setAuthTokens] = useState(existingTokens);
 
+  // function to set JWT in local storage via hook
   const setTokens = (data) => {
-    localStorage.setItem('tokens', JSON.stringify(data));
+    localStorage.setItem('token', JSON.stringify(data));
     setAuthTokens(data);
+  };
+
+  // get locally stored token and verify
+  const verifyTokens = () => {
+    const currentToken = localStorage.getItem('token');
+    if (currentToken) {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ currentToken }),
+      };
+      fetch('/auth/verify', options)
+        .then((res) => res.json())
+        .then((data) => {
+          // do something with authorized
+        });
+    } else {
+      console.error('no token found');
+    }
   };
 
   return (
