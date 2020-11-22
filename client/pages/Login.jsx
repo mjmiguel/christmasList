@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import fetch from 'node-fetch';
 import { useAuth } from '../context/auth';
 
@@ -7,20 +7,21 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [authValidation, setAuthValidation] = useState(null);
   const [lenValidation, setLenValidation] = useState(true);
+
+  // referrer if trying to access page other than '/'
   const referer = props.location.state.referer || '/';
 
   const { setAuthTokens } = useAuth();
 
   useEffect(() => {}, [lenValidation]);
 
+  // send request to compare login to db hash
+  // set token generated from successful verification
   const handleSubmit = (e) => {
     e.preventDefault();
     if (process.env !== 'test') {
       if (password.length > 0) {
         setLenValidation(true);
-        console.log('form submitted!');
-        // send fetch
-        // set validation
         const options = {
           method: 'POST',
           headers: {
@@ -31,12 +32,9 @@ const Login = (props) => {
         fetch('/auth/login', options)
           .then((res) => res.json())
           .then((data) => {
-            console.log('data', data);
-            if (data.authorized) {
-              // TODO: add valid tokens in express
-
-              console.log('dataaaa', data);
-              setAuthTokens('some token');
+            const { authorized, token } = data;
+            if (authorized && token) {
+              setAuthTokens(token);
               setAuthValidation(true);
             } else {
               setAuthValidation(false);

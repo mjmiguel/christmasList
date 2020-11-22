@@ -44,12 +44,17 @@ authController.checkLogin = async (req, res, next) => {
 };
 
 authController.setToken = (req, res, next) => {
-  jwt.sign({ I: 'amCool' }, JWT_PRIVATE_KEY, (err, token) => {
-    if (err) next({ location: 'setToken', ...err });
-    // set token
-    res.locals.token = token;
+  // create token only if password verified
+  if (res.locals.authorized) {
+    jwt.sign({ I: 'amCool' }, JWT_PRIVATE_KEY, { expiresIn: '14d' }, (err, token) => {
+      if (err) next({ location: 'setToken', ...err });
+      // set token
+      res.locals.token = token;
+      next();
+    });
+  } else {
     next();
-  });
+  }
 };
 
 authController.verifyToken = (req, res, next) => {

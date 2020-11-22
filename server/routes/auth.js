@@ -1,16 +1,19 @@
 const express = require('express');
 
-const authController = require('../controllers/authController');
+const { checkLogin, setToken } = require('../controllers/authController');
 
 const router = express.Router();
 
-// route verify login
-router.post('/login', authController.checkLogin, (req, res) => {
-  if (res.locals.authorized) {
-    res.status(200).json({ authorized: true });
+// check password and set a JWT
+router.post('/login', checkLogin, setToken, (req, res) => {
+  const { authorized, token } = res.locals;
+  if (authorized && token) {
+    res.status(200).json({ authorized: true, token });
   } else {
     res.status(401).json({ authorized: false });
   }
 });
+
+// add route for verify token
 
 module.exports = router;
