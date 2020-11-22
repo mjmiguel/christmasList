@@ -1,10 +1,12 @@
 const db = require('../models/userModel');
 const bcrypt = require('bcryptjs');
-const SALT_FACTOR = 12; // should be at least 10
+var jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const authController = {};
-const { SITE_LOGIN_PASSWORD } = process.env;
+
+const { SITE_LOGIN_PASSWORD, JWT_PRIVATE_KEY } = process.env;
+const SALT_FACTOR = 12; // should be at least 10
 
 //  update passwords for ALL users
 authController.updatePassword = (req, res, next) => {
@@ -41,6 +43,22 @@ authController.checkLogin = async (req, res, next) => {
   });
 };
 
+authController.setToken = (req, res, next) => {
+  jwt.sign({ I: 'amCool' }, JWT_PRIVATE_KEY, (err, token) => {
+    console.log('TOKEN', token);
+    if (err) next({ location: 'setToken', ...err });
+    // set token
+    res.locals.token = token;
+    next();
+  });
+};
+
+authController.verifyToken = (req, res, next) => {
+  // jwt.verify(token, secretOrPublicKey, [options, callback])
+  // jwt.verify(token, 'shhhhh', function(err, decoded) {
+  //   console.log(decoded.foo) // bar
+  // });
+};
 // protect route
 // verify token
 
