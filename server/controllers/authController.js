@@ -58,16 +58,19 @@ authController.setToken = (req, res, next) => {
 };
 
 authController.verifyToken = (req, res, next) => {
-  // jwt.verify(token, secretOrPublicKey, [options, callback])
-  // jwt.verify(token, 'shhhhh', function(err, decoded) {
-  //   console.log(decoded.foo) // bar
-  // });
+  const { currentToken } = req.body;
+  jwt.verify(currentToken, JWT_PRIVATE_KEY, (err, decoded) => {
+    if (err) next({ location: 'verifyToken', ...err });
+    console.log('decoded', decoded);
+    // verify token and confirm signature
+    if (decoded && (decoded['I'] = 'amCool')) {
+      res.locals.tokenVerified = true;
+      next();
+    } else {
+      res.locals.tokenVerified = false;
+      next();
+    }
+  });
 };
-// protect route
-// verify token
-
-// verify token
-
-// create token
 
 module.exports = authController;

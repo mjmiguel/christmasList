@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { checkLogin, setToken } = require('../controllers/authController');
+const { checkLogin, setToken, verifyToken } = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -15,5 +15,13 @@ router.post('/login', checkLogin, setToken, (req, res) => {
 });
 
 // add route for verify token
+router.post('/verifyToken', verifyToken, (req, res) => {
+  const { tokenVerified } = res.locals;
+  if (tokenVerified) {
+    res.status(200).json({ tokenVerified: true });
+  } else {
+    res.status(401).json({ tokenVerified: false });
+  }
+});
 
 module.exports = router;
