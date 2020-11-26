@@ -16,11 +16,11 @@ import PrivateRoute from './components/PrivateRoute';
 
 // import stylesheet
 import './stylesheets/styles.scss';
-import fetch from 'node-fetch';
 
 const App = (props) => {
-  const existingTokens = JSON.parse(localStorage.getItem('tokens'));
+  const existingTokens = JSON.parse(localStorage.getItem('token'));
   const [authTokens, setAuthTokens] = useState(existingTokens);
+  const [tokenVerified, setTokenVerified] = useState('loading');
 
   // function to set JWT in local storage via hook
   const setTokens = (data) => {
@@ -28,9 +28,8 @@ const App = (props) => {
     setAuthTokens(data);
   };
 
-  // get locally stored token and verify
-  const verifyTokens = () => {
-    const currentToken = localStorage.getItem('token');
+  // verify tokens and set conditional for Private Route to render
+  const verifyTokens = (currentToken) => {
     if (currentToken) {
       const options = {
         method: 'POST',
@@ -39,18 +38,31 @@ const App = (props) => {
         },
         body: JSON.stringify({ currentToken }),
       };
-      fetch('/auth/verify', options)
+      fetch('/auth/verifyToken', options)
         .then((res) => res.json())
         .then((data) => {
-          // do something with authorized
-        });
+          if (data.tokenVerified) {
+            setTokenVerified(true);
+          } else {
+            setTokenVerified(false);
+          }
+        })
+        .catch((error) => console.error('Error in verifyTokens fetch', error));
     } else {
       console.error('no token found');
     }
   };
 
   return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+    <AuthContext.Provider
+      value={{
+        authTokens,
+        setAuthTokens: setTokens,
+        tokenVerified,
+        setTokenVerified,
+        verifyTokens,
+      }}
+    >
       <BrowserRouter>
         <div className="router">
           <Header />

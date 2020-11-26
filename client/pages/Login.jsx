@@ -11,8 +11,9 @@ const Login = (props) => {
   // referrer if trying to access page other than '/'
   const referer = props.location.state.referer || '/';
 
-  const { setAuthTokens } = useAuth();
+  const { setAuthTokens, setTokenVerified, tokenVerified } = useAuth();
 
+  // update hook to check password length
   useEffect(() => {}, [lenValidation]);
 
   // send request to compare login to db hash
@@ -35,6 +36,7 @@ const Login = (props) => {
             const { authorized, token } = data;
             if (authorized && token) {
               setAuthTokens(token);
+              setTokenVerified(true);
               setAuthValidation(true);
             } else {
               setAuthValidation(false);
@@ -46,14 +48,13 @@ const Login = (props) => {
       } else {
         // render some text validation
         setLenValidation(false);
-        console.log('length too short');
       }
     }
   };
 
   // check auth validation before render
   // redirect to referer page
-  if (authValidation) {
+  if (authValidation || tokenVerified === true) {
     return <Redirect to={referer} />;
   }
 
