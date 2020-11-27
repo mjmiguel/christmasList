@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
   // check token each time the component rendered changes
   useEffect(() => {
-    if ((authTokens && tokenVerified === false) || (authTokens && tokenVerified === 'loading')) {
+    if (authTokens) {
       verifyTokens(authTokens);
     }
   }, [Component]);
