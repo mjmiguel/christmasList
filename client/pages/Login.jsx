@@ -77,6 +77,8 @@ const Login = (props) => {
           name="login-password"
           onChange={(e) => {
             setPassword(e.target.value);
+            setAuthValidation(null);
+            setLenValidation(true);
           }}
         />
         {lenValidation ? null : <div>probably not a valid password</div>}
