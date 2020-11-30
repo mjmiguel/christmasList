@@ -1,23 +1,17 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
-import React, { useState } from "react";
-import bubs from "../assets/bubs.png";
-import EditorJs from "react-editor-js";
-import { EDITOR_JS_TOOLS } from "./editorTools";
-import Paragraph from "@editorjs/paragraph";
+import React, { useState } from 'react';
+import bubs from '../assets/bubs.png';
+import EditorJs from 'react-editor-js';
+import { EDITOR_JS_TOOLS } from '../editorTools';
+import Paragraph from '@editorjs/paragraph';
 
 const QueryBox = (props) => {
   const { users } = props;
   if (!users) {
     return (
       <div>
-        <img
-          className="loading"
-          src={bubs}
-          alt="bubs"
-          height="200px"
-          width="200px"
-        />
+        <img className="loading" src={bubs} alt="bubs" height="200px" width="200px" />
       </div>
     );
   }
@@ -34,7 +28,7 @@ const QueryBox = (props) => {
     options.push(
       <option id={user.user_id} value={user.name}>
         {user.name}
-      </option>
+      </option>,
     );
   });
 
@@ -50,11 +44,7 @@ const QueryBox = (props) => {
       <form id="queryBox" onSubmit={handleSubmit}>
         <label htmlFor="list">View a wishlist</label>
         <br />
-        <select
-          id="list"
-          className="form-control"
-          onChange={(e) => setUser(e.target.value)}
-        >
+        <select id="list" className="form-control" onChange={(e) => setUser(e.target.value)}>
           {options}
         </select>
         <br />
@@ -73,10 +63,7 @@ const QueryBox = (props) => {
                 readOnly={true}
                 minHeight={0}
               >
-                <section
-                  id="list-card-list"
-                  style={{ display: "flex" }}
-                ></section>
+                <section id="list-card-list" style={{ display: 'flex' }}></section>
               </EditorJs>
             </div>
           )}

@@ -1,5 +1,5 @@
 /* reset default styles */
-@import "variables.scss";
+@import 'variables.scss';
 @import url(https://fonts.googleapis.com/css?family=Monoton&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Knewave&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Averia+Serif+Libre&display=swap);
@@ -50,6 +50,15 @@ h3 {
   margin: 30px 30px 30px 30px;
 }
 
+#login-form {
+  margin: 100px auto 200px auto;
+}
+
+#login-password {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 // ----------------------------------------------------------------------------------------
 //images
 
@@ -67,10 +76,10 @@ img {
 // for rotating
 @keyframes rotation {
   from {
-    transform: rotate(0deg);
+    transform: rotate(359deg);
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(0deg);
   }
 }
 
@@ -115,24 +124,20 @@ footer {
 
 // ----------------------------------------------------------------------------------------
 // gifter - giftee table
-.header {
+th {
   text-align: center;
   font-size: 2.4rem;
-  font-family: "Knewave", cursive;
-}
-
-.table-row {
-  border-color: white;
-  :hover {
-    font-size: 2rem;
-    font-weight: bold;
-  }
+  font-family: 'Knewave', cursive;
 }
 
 tr {
   text-align: center;
   font-family: $Averia;
   font-size: 1.8rem;
+}
+
+tr:hover {
+  color: greenyellow;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -167,7 +172,7 @@ section div .ce-header {
 
 #list-card-list {
   padding: 20px 20px 20px 20px;
-  font-family: "Averia Serif Libre", cursive;
+  font-family: 'Averia Serif Libre', cursive;
   font-size: 1.5rem;
 }
 
@@ -198,12 +203,12 @@ section div .ce-header {
 // buttons
 
 button,
-input[type="button"],
-input[type="submit"] {
+input[type='button'],
+input[type='submit'] {
   background-color: transparent;
   border-color: blueviolet;
   font-size: 2rem;
-  font-family: "Knewave", cursive;
+  font-family: 'Knewave', cursive;
   color: #ff745e;
   border-radius: 10px;
   :hover {

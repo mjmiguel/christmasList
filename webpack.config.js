@@ -41,6 +41,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/users': 'http://localhost:3000',
+      '/auth': 'http://localhost:3000'
     },
   },
   resolve: {
