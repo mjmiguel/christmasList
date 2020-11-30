@@ -73,6 +73,7 @@ img {
 .loading {
   animation: rotation 0.5s infinite linear;
 }
+
 // for rotating
 @keyframes rotation {
   from {
@@ -87,14 +88,12 @@ img {
 //all links
 a {
   text-decoration: none;
-}
-
-a:visited {
-  color: $body-text;
-}
-
-a:hover {
-  color: $hover-color;
+  &:visited {
+    color: $body-text;
+  }
+  &:hover {
+    color: $hover-color;
+  }
 }
 
 // ----------------------------------------------------------------------------------------
@@ -119,7 +118,7 @@ footer {
 }
 
 #splash {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -134,10 +133,9 @@ tr {
   text-align: center;
   font-family: $Averia;
   font-size: 1.8rem;
-}
-
-tr:hover {
-  color: greenyellow;
+  &:hover {
+    color: greenyellow;
+  }
 }
 
 // ----------------------------------------------------------------------------------------
@@ -160,15 +158,17 @@ section div .ce-header {
 .ce-block a {
   color: #5ee9ff;
   text-decoration: none;
+  &:visited {
+    color: #5ee9ff;
+  }
+  &:hover {
+    color: $hover-color;
+  }
 }
 
-.ce-block a:visited {
-  color: #5ee9ff;
-}
+// .ce-block
 
-.ce-block a:hover {
-  color: $hover-color;
-}
+// .ce-block a
 
 #list-card-list {
   padding: 20px 20px 20px 20px;
@@ -211,7 +211,7 @@ input[type='submit'] {
   font-family: 'Knewave', cursive;
   color: #ff745e;
   border-radius: 10px;
-  :hover {
+  &:hover {
     color: $hover-color;
   }
 }
