@@ -1,11 +1,12 @@
 const db = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+const fetch = require('node-fetch');
 require('dotenv').config();
 
 const authController = {};
 
-const { SITE_LOGIN_PASSWORD, JWT_PRIVATE_KEY } = process.env;
+const { SITE_LOGIN_PASSWORD, JWT_PRIVATE_KEY, RECAPTCHA_SECRET } = process.env;
 const SALT_FACTOR = 12; // should be at least 10
 
 //  update passwords for ALL users
@@ -72,5 +73,28 @@ authController.verifyToken = (req, res, next) => {
     }
   });
 };
+
+// for recaptcha v3
+// authController.verifyCaptcha = (req, res, next) => {
+//   const { captchaToken } = req.body;
+//   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET}&response=${captchaToken}`;
+//   console.log('BE captcha token', captchaToken);
+//   const options = { method: 'POST' };
+//   fetch(url, options)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log('got data back from captcha', data);
+//       const { success, score, action } = data;
+//       if (success) {
+//         res.locals.captchaScore = score;
+//         console.log('captcha res action', action);
+//         next();
+//       }
+//       next();
+//     })
+//     .catch((error) => {
+//       if (error) next({ location: 'verifty captcha fetch', ...err });
+//     });
+// };
 
 module.exports = authController;
