@@ -1,11 +1,12 @@
 /* reset default styles */
-@import 'variables.scss';
+@import "variables.scss";
 @import url(https://fonts.googleapis.com/css?family=Monoton&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Knewave&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Averia+Serif+Libre&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap);
 
-html, body {
+html,
+body {
   height: 100%;
   text-align: center;
 }
@@ -16,9 +17,14 @@ body {
   font-size: 1.5rem;
 }
 
-.h1, .h2, .h3, h1, h2, h3 {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .main-container {
@@ -37,7 +43,7 @@ body {
 //menus
 .form-control {
   color: blueviolet !important;
-	background-color: transparent !important;
+  background-color: transparent !important;
   border: 1px solid $body-text;
   border-radius: 10px;
   font-size: 1.6rem;
@@ -88,37 +94,36 @@ header {
   text-align: center;
   font-family: $Monoton;
   font-size: 2rem;
-	padding-top: 5px;
-	padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 // ----------------------------------------------------------------------------------------
-// footer 
+// footer
 
 footer {
   text-align: left;
   font-size: 0.5rem;
-	padding-top: 5px;
-	padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #splash {
   margin-top: 100px;
 }
 
-
 // ----------------------------------------------------------------------------------------
 // gifter - giftee table
 .header {
   text-align: center;
-	font-size: 2.4rem;
-	font-family: 'Knewave', cursive;
+  font-size: 2.4rem;
+  font-family: "Knewave", cursive;
 }
 
 .table-row {
   border-color: white;
   :hover {
-    font-size: 2.0rem;
+    font-size: 2rem;
     font-weight: bold;
   }
 }
@@ -134,14 +139,20 @@ tr {
 
 .list-card {
   background-color: #000;
-	border-radius: 5px;
+  border-radius: 5px;
   border: 2px solid $body-text;
   margin: 30px 30px 30px 30px;
 }
 
+// fix spacing for wishlist card content
+section div .ce-header {
+  padding: 10px 0px;
+  margin: 0;
+}
+
 #list-card-list {
   padding: 20px 20px 20px 20px;
-  font-family: 'Averia Serif Libre', cursive;
+  font-family: "Averia Serif Libre", cursive;
   font-size: 1.5rem;
 }
 
@@ -152,29 +163,35 @@ tr {
 // ----------------------------------------------------------------------------------------
 // list submission page
 
-textarea {
+#editorjs-box {
   color: $body-text !important;
-	background-color: #000 !important;
-	border: 1px solid $body-text;
+  background-color: #000 !important;
+  border: 1px solid $body-text;
   font-size: 1.5rem;
   border-radius: 10px;
   padding-left: 10px;
   padding-top: 10px;
 }
 
+// SET MAX WIDTH FOR EDITOR
+.ce-block__content {
+  max-width: 650px;
+  width: 650px;
+}
+
 // ----------------------------------------------------------------------------------------
 // buttons
 
-button, input[type=button], input[type=submit] {
+button,
+input[type="button"],
+input[type="submit"] {
   background-color: transparent;
   border-color: blueviolet;
   font-size: 2rem;
-  font-family: 'Knewave', cursive;
+  font-family: "Knewave", cursive;
   color: #ff745e;
   border-radius: 10px;
   :hover {
     color: $hover-color;
   }
 }
-
-

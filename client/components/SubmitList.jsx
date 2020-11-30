@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
-import React, { Component } from 'react';
-import fetch from 'node-fetch';
-import bubs from '../assets/bubs.png';
+import React, { Component } from "react";
+import fetch from "node-fetch";
+import bubs from "../assets/bubs.png";
+import EditorJs from "react-editor-js";
+import { EDITOR_JS_TOOLS } from "./editorTools";
 
 class SubmitList extends Component {
   constructor(props) {
@@ -18,23 +20,39 @@ class SubmitList extends Component {
   }
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== "test") {
       // get initial list of users
-      fetch('/users')
+      fetch("/users")
         .then((res) => res.json())
         .then((users) => {
           this.setState({ usersFetched: true, users });
         })
-        .catch((err) => console.log('SubmitList.componentDidMount: get users: ERROR: ', err));
+        .catch((err) =>
+          console.log("SubmitList.componentDidMount: get users: ERROR: ", err)
+        );
     }
   }
 
   // update state based on user input
-  handleChange(event) {
-    if (event.target.id === 'myWishList') {
-      this.setState({ ...this.state, userListToSend: event.target.value });
-    } else if (event.target.id === 'name') {
-      this.setState({ ...this.state, userToSend: event.target.value });
+  handleChange(data) {
+    // save data if data is event object from dropdown and hide validdate div
+    if (data.target) {
+      this.setState({ ...this.state, userToSend: data.target.value });
+      const validateDiv = document.getElementById("dropdown-validate");
+      validateDiv.style.display = "none";
+    } else {
+      // save data passed from editorjs
+      const validateDiv = document.getElementById("editor-validate");
+      validateDiv.style.display = "none";
+      // 'data' is an instance of editorJS
+      data.saver
+        .save()
+        .then((outputData) => {
+          this.setState({ ...this.state, userListToSend: outputData });
+        })
+        .catch((error) => {
+          console.log("Saving failed: ", error);
+        });
     }
   }
 
@@ -42,21 +60,34 @@ class SubmitList extends Component {
     const { userToSend, userListToSend } = this.state;
     event.preventDefault();
     const settings = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ userToSend, userListToSend }),
     };
-    fetch('/users', settings)
-      .then((res) => res.json())
-      .then((data) => {
-        this.props.history.push('/next');
-      }).catch((err) => {
-        console.log(err);
-        this.props.history.push('/error');
-      });
+
+    if (!userToSend || userToSend === "Choose") {
+      // render validation for dropdown
+      const validateDiv = document.getElementById("dropdown-validate");
+      validateDiv.style.display = "block";
+    } else if (!userListToSend || userListToSend.blocks.length === 0) {
+      // render validation for editor text
+      const validateDiv = document.getElementById("editor-validate");
+      validateDiv.style.display = "block";
+    } else {
+      // send POST to update wishList
+      fetch("/users", settings)
+        .then((res) => res.json())
+        .then((data) => {
+          // send user to success page
+          this.props.history.push("/next");
+        })
+        .catch((err) => {
+          console.log("Error in list submit fetch", err);
+        });
+    }
   }
 
   render() {
@@ -64,15 +95,24 @@ class SubmitList extends Component {
     if (!usersFetched) {
       return (
         <div>
-          <img className="loading" src={bubs} alt="bubs" height="200" width="200" />
+          <img
+            className="loading"
+            src={bubs}
+            alt="bubs"
+            height="200"
+            width="200"
+          />
         </div>
       );
     }
+
     // populate dropdown menu with users
     const options = [];
     users.forEach((user) => {
       options.push(
-        <option id={user.user_id} value={user.name}>{user.name}</option>,
+        <option id={user.user_id} value={user.name}>
+          {user.name}
+        </option>
       );
     });
 
@@ -83,22 +123,37 @@ class SubmitList extends Component {
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Who are you?</label>
             <br />
-            <select id="name" className="form-control" onChange={this.handleChange}>
+            <select
+              id="name"
+              className="form-control"
+              onChange={this.handleChange}
+            >
               <option value="Choose">Choose...</option>
               {options}
             </select>
+            <h1
+              id="dropdown-validate"
+              style={{ display: "none", color: "red" }}
+            >
+              Please choose a name
+            </h1>
             <br />
             <br />
             <label htmlFor="myWishList">What would you like?</label>
             <br />
-            <textarea
-              id="myWishList"
-              cols="60"
-              rows="10"
-              placeholder="Type here"
-              onChange={this.handleChange}
-            />
             <br />
+            <EditorJs
+              placeholder="Type Here. Select text for options"
+              tools={EDITOR_JS_TOOLS}
+              holder="editorjs-box"
+              minHeight={50}
+              onChange={this.handleChange}
+            >
+              <div id="editorjs-box"></div>
+            </EditorJs>
+            <h1 id="editor-validate" style={{ display: "none", color: "red" }}>
+              Please enter a list
+            </h1>
             <br />
             <input type="submit" value="submit" />
           </form>
