@@ -86,14 +86,15 @@ img {
 // ----------------------------------------------------------------------------------------
 //all links
 a {
-  color: $body-text;
   text-decoration: none;
-  :visited {
-    color: $body-text;
-  }
-  :hover {
-    color: $hover-color;
-  }
+}
+
+a:visited {
+  color: $body-text;
+}
+
+a:hover {
+  color: $hover-color;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -149,6 +150,26 @@ tr:hover {
   margin: 30px 30px 30px 30px;
 }
 
+// fix spacing for wishlist card content
+section div .ce-header {
+  padding: 10px 0px;
+  margin: 0;
+}
+
+// change colors for links in lists
+.ce-block a {
+  color: #5ee9ff;
+  text-decoration: none;
+}
+
+.ce-block a:visited {
+  color: #5ee9ff;
+}
+
+.ce-block a:hover {
+  color: $hover-color;
+}
+
 #list-card-list {
   padding: 20px 20px 20px 20px;
   font-family: 'Averia Serif Libre', cursive;
@@ -162,7 +183,7 @@ tr:hover {
 // ----------------------------------------------------------------------------------------
 // list submission page
 
-textarea {
+#editorjs-box {
   color: $body-text !important;
   background-color: #000 !important;
   border: 1px solid $body-text;
@@ -170,6 +191,12 @@ textarea {
   border-radius: 10px;
   padding-left: 10px;
   padding-top: 10px;
+}
+
+// SET MAX WIDTH FOR EDITOR
+.ce-block__content {
+  max-width: 650px;
+  width: 650px;
 }
 
 // ----------------------------------------------------------------------------------------
