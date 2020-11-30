@@ -77,14 +77,15 @@ img {
 // ----------------------------------------------------------------------------------------
 //all links
 a {
-  color: $body-text;
   text-decoration: none;
-  :visited {
-    color: $body-text;
-  }
-  :hover {
-    color: $hover-color;
-  }
+}
+
+a:visited {
+  color: $body-text;
+}
+
+a:hover {
+  color: $hover-color;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -148,6 +149,20 @@ tr {
 section div .ce-header {
   padding: 10px 0px;
   margin: 0;
+}
+
+// change colors for links in lists
+.ce-block a {
+  color: #5ee9ff;
+  text-decoration: none;
+}
+
+.ce-block a:visited {
+  color: #5ee9ff;
+}
+
+.ce-block a:hover {
+  color: $hover-color;
 }
 
 #list-card-list {
