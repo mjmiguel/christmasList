@@ -37,20 +37,21 @@ class Home extends Component {
           <section>
             <img alt="splash" id="splash" src={dog} />
             <h1>Welcome!</h1>
-            <Link to={
-              {
+            <Link
+              to={{
                 pathname: '/submit',
                 users,
                 usersFetched,
-              }
-            }
+              }}
             >
               <button type="submit">Submit your List</button>
             </Link>
           </section>
+          <div className="scroll-down-arrow">➮</div>
         </div>
         <div className="container">
           <UserTable users={users} usersFetched={usersFetched} />
+          <div className="scroll-down-arrow">➮</div>
         </div>
         <div className="container">
           <QueryBox users={users} />

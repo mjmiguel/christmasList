@@ -4,11 +4,12 @@ import React from 'react';
 // import stylesheet
 // import ./scss/main.scss
 
-const About = props => {
+const About = (props) => {
   return (
-    <div>
+    <div className="container">
       <main>
-        <h1>stuff about michael with funny gif</h1>
+        <h1>just a cool site for cool people</h1>
+        <p>deployed on AWS probably</p>
       </main>
     </div>
   );

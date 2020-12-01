@@ -14,7 +14,6 @@ body {
 body {
   background: $background-color;
   color: $body-text;
-  font-size: 1.5rem;
 }
 
 .h1,
@@ -46,8 +45,8 @@ h3 {
   background-color: transparent !important;
   border: 1px solid $body-text;
   border-radius: 10px;
-  font-size: 1.6rem;
-  margin: 30px 30px 30px 30px;
+  font-size: 1.5rem;
+  margin: 20px 20px 20px 20px;
 }
 
 #login-form {
@@ -57,6 +56,7 @@ h3 {
 #login-password {
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -70,10 +70,12 @@ img {
   border-radius: 300px;
 }
 
+// for loading image
 .loading {
   animation: rotation 0.5s infinite linear;
 }
-// for rotating
+
+// for rotating loading image
 @keyframes rotation {
   from {
     transform: rotate(359deg);
@@ -83,18 +85,45 @@ img {
   }
 }
 
+// arrow prompting to scroll down
+.scroll-down-arrow {
+  color: transparent;
+  position: relative;
+
+  transform: rotate(90deg);
+  animation-name: moveDown;
+  animation-duration: 5s;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+}
+
+// reveal the arrow as it's moving downwards
+@keyframes moveDown {
+  0% {
+    color: transparent;
+    top: 0px;
+  }
+
+  50% {
+    color: $body-text;
+  }
+
+  100% {
+    color: $body-text;
+    top: 100px;
+  }
+}
+
 // ----------------------------------------------------------------------------------------
 //all links
 a {
   text-decoration: none;
-}
-
-a:visited {
-  color: $body-text;
-}
-
-a:hover {
-  color: $hover-color;
+  &:visited {
+    color: $body-text;
+  }
+  &:hover {
+    color: $hover-color;
+  }
 }
 
 // ----------------------------------------------------------------------------------------
@@ -103,7 +132,7 @@ a:hover {
 header {
   text-align: center;
   font-family: $Monoton;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -118,26 +147,21 @@ footer {
   padding-bottom: 5px;
 }
 
-#splash {
-  margin-top: 100px;
-}
-
 // ----------------------------------------------------------------------------------------
 // gifter - giftee table
 th {
   text-align: center;
-  font-size: 2.4rem;
+  // font-size: 2.4rem;
   font-family: 'Knewave', cursive;
 }
 
 tr {
   text-align: center;
   font-family: $Averia;
-  font-size: 1.8rem;
-}
-
-tr:hover {
-  color: greenyellow;
+  // font-size: 1.8rem;
+  &:hover {
+    color: lawngreen;
+  }
 }
 
 // ----------------------------------------------------------------------------------------
@@ -160,20 +184,22 @@ section div .ce-header {
 .ce-block a {
   color: #5ee9ff;
   text-decoration: none;
-}
-
-.ce-block a:visited {
-  color: #5ee9ff;
-}
-
-.ce-block a:hover {
-  color: $hover-color;
+  &:visited {
+    color: #5ee9ff;
+  }
+  &:hover {
+    color: $hover-color;
+  }
 }
 
 #list-card-list {
   padding: 20px 20px 20px 20px;
   font-family: 'Averia Serif Libre', cursive;
-  font-size: 1.5rem;
+}
+
+// remove margin by editorjs for list cards only
+section .codex-editor--narrow .codex-editor__redactor {
+  margin-right: 10px;
 }
 
 .wishlist-display {
@@ -187,16 +213,7 @@ section div .ce-header {
   color: $body-text !important;
   background-color: #000 !important;
   border: 1px solid $body-text;
-  font-size: 1.5rem;
   border-radius: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-// SET MAX WIDTH FOR EDITOR
-.ce-block__content {
-  max-width: 650px;
-  width: 650px;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -211,7 +228,116 @@ input[type='submit'] {
   font-family: 'Knewave', cursive;
   color: #ff745e;
   border-radius: 10px;
-  :hover {
+  margin: 10px 20px 10px 20px;
+  &:hover {
     color: $hover-color;
+  }
+}
+
+// ----------------------------------------------------------------------------------------
+// breakpoints
+
+// big screen
+@media screen and (min-width: 1022px) {
+  body {
+    font-size: 1.5rem;
+  }
+
+  #splash {
+    margin-top: 50px;
+  }
+
+  .scroll-down-arrow {
+    font-size: 7rem;
+  }
+
+  th {
+    font-size: 2.4rem;
+  }
+
+  tr {
+    font-size: 1.8rem;
+  }
+
+  .ce-block__content {
+    padding-left: 10px;
+    max-width: 650px;
+    width: 650px;
+  }
+
+  #list-card-list {
+    padding: 20px 20px 20px 20px;
+  }
+}
+
+// medium screen
+@media screen and (min-width: 421px) and (max-width: 1021px) {
+  body {
+    font-size: 1.35rem;
+  }
+
+  #splash {
+    margin-top: 30px;
+  }
+
+  .scroll-down-arrow {
+    font-size: 6rem;
+  }
+
+  img {
+    height: 400px;
+    width: 400px;
+  }
+
+  th {
+    font-size: 2rem;
+  }
+
+  tr {
+    font-size: 1.5rem;
+  }
+
+  .ce-block__content {
+    padding-left: 10px;
+    max-width: 450px;
+    width: 450px;
+  }
+
+  #list-card-list {
+    padding: 0px;
+  }
+}
+
+// small screen
+@media screen and (max-width: 420px) {
+  body {
+    font-size: 1.2rem;
+  }
+
+  .scroll-down-arrow {
+    font-size: 5rem;
+  }
+
+  th {
+    font-size: 1.9rem;
+  }
+
+  tr {
+    font-size: 1.3rem;
+  }
+
+  img {
+    height: 300px;
+    width: 300px;
+  }
+
+  .ce-block__content {
+    margin: 0px 10px;
+    max-width: 350px;
+    width: 300px;
+  }
+
+  #list-card-list {
+    padding: 0px;
   }
 }
