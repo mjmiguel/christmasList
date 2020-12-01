@@ -6,33 +6,45 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     publicPath: '/',
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)/,
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
       },
       {
-        test: /\.(css|scss)/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.png$/,
         use: [
           {
             loader: 'url-loader',
+            options: {
+              mimetype: 'image/png',
+            },
           },
         ],
+      },
+      {
+        test: /\.jpg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              mimetype: 'image/jpg',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -41,7 +53,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/users': 'http://localhost:3000',
-      '/auth': 'http://localhost:3000'
+      '/auth': 'http://localhost:3000',
     },
   },
   resolve: {
@@ -53,4 +65,16 @@ module.exports = {
       template: './index.html',
     }),
   ],
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 };
