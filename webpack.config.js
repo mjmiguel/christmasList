@@ -6,8 +6,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].[contenthash].js',
-    publicPath: '/',
+    filename: module.exports.mode === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js',
+    publicPath: '/build',
   },
   module: {
     rules: [
@@ -62,6 +62,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'woo xmas',
       template: './index.html',
     }),
   ],

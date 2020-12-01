@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config();
 
 // specified in .env file
-const { PORT } = process.env;
+const { PORT, NODE_ENV } = process.env;
 
 const app = express();
 const userRouter = require('./routes/users');
@@ -26,7 +26,11 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // respond with main app
 app.get('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+  if (NODE_ENV === 'production') {
+    res.status(200).sendFile(path.resolve(__dirname, '../build/index.html'));
+  } else {
+    res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+  }
 });
 
 // handle requests for everything else (404)
