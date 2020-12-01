@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[contenthash].js',
-    publicPath: '/',
+    publicPath: '/build',
   },
   module: {
     rules: [
@@ -62,6 +62,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'woo xmas',
       template: './index.html',
     }),
   ],
