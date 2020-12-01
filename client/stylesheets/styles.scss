@@ -70,17 +70,47 @@ img {
   border-radius: 300px;
 }
 
+// for loading image
 .loading {
   animation: rotation 0.5s infinite linear;
 }
 
-// for rotating
+// for rotating loading image
 @keyframes rotation {
   from {
     transform: rotate(359deg);
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+// arrow prompting to scroll down
+.scroll-down-arrow {
+  color: transparent;
+  position: relative;
+
+  transform: rotate(90deg);
+  animation-name: moveDown;
+  animation-duration: 5s;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+}
+
+// reveal the arrow as it's moving downwards
+@keyframes moveDown {
+  0% {
+    color: transparent;
+    top: 0px;
+  }
+
+  50% {
+    color: $body-text;
+  }
+
+  100% {
+    color: $body-text;
+    top: 100px;
   }
 }
 
@@ -115,10 +145,6 @@ footer {
   font-size: 0.5rem;
   padding-top: 5px;
   padding-bottom: 5px;
-}
-
-#splash {
-  margin-top: 50px;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -188,7 +214,6 @@ section .codex-editor--narrow .codex-editor__redactor {
   background-color: #000 !important;
   border: 1px solid $body-text;
   border-radius: 10px;
-  // padding-left: 10px;
 }
 
 // ----------------------------------------------------------------------------------------
@@ -218,6 +243,14 @@ input[type='submit'] {
     font-size: 1.5rem;
   }
 
+  #splash {
+    margin-top: 50px;
+  }
+
+  .scroll-down-arrow {
+    font-size: 7rem;
+  }
+
   th {
     font-size: 2.4rem;
   }
@@ -241,6 +274,14 @@ input[type='submit'] {
 @media screen and (min-width: 421px) and (max-width: 1021px) {
   body {
     font-size: 1.35rem;
+  }
+
+  #splash {
+    margin-top: 30px;
+  }
+
+  .scroll-down-arrow {
+    font-size: 6rem;
   }
 
   img {
@@ -271,6 +312,10 @@ input[type='submit'] {
 @media screen and (max-width: 420px) {
   body {
     font-size: 1.2rem;
+  }
+
+  .scroll-down-arrow {
+    font-size: 5rem;
   }
 
   th {
