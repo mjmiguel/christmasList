@@ -6,7 +6,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].[contenthash].js',
+    filename: module.exports.mode === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js',
     publicPath: '/build',
   },
   module: {
