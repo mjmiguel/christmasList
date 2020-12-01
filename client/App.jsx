@@ -11,7 +11,6 @@ import SubmitList from './pages/SubmitList';
 import Next from './pages/Next';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ErrorPage from './pages/Error';
 import PrivateRoute from './components/PrivateRoute';
 
 // import stylesheet
@@ -73,7 +72,6 @@ const App = (props) => {
               <PrivateRoute exact path="/submit" component={SubmitList} />
               <PrivateRoute exact path="/about" component={About} />
               <PrivateRoute exact path="/next" component={Next} />
-              <PrivateRoute exact path="/error" component={ErrorPage} />
             </Switch>
           </main>
           <Footer />
