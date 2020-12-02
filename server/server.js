@@ -35,7 +35,11 @@ app.get('/', (req, res) => {
 
 // handle requests for everything else (404)
 app.use('*', (req, res) => {
-  res.status(404).send('404 Not Found :(');
+  if (NODE_ENV === 'production') {
+    res.status(200).sendFile(path.resolve(__dirname, '../build/index.html'));
+  } else {
+    res.status(404).send('404 Not Found :(');
+  }
 });
 
 // Global error handler with nice messages

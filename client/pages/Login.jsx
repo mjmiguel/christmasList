@@ -9,7 +9,7 @@ const Login = (props) => {
   const [lenValidation, setLenValidation] = useState(true);
 
   // referrer if trying to access page other than '/'
-  const referer = props.location.state.referer || '/';
+  const referer = '/' || props.location.state.referer;
 
   const { setAuthTokens, setTokenVerified, tokenVerified } = useAuth();
 
