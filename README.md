@@ -1,6 +1,57 @@
-# christmasList-react
-Iteration (from scratch) of my christmas list project.
+# ChristmasListv2
+Ispired by my previous christmasList project.
 
-Uses react, react-router, express, node-postgres, and webpack for bundling.
+My family needed a way to share christmas lists with each other so I made this:
 
-Someday it will include authentication with bcrypt.
+a simple SPA for posting and viewing wishlists.
+
+Currently deployed via AWS
+
+- [x] react
+- [x] react-router
+- [x] express
+- [x] pg
+- [x] webpack
+- [x] bcrypt
+
+Todo:
+- [ ] modularize SCSS
+- [ ] improve user model - serves needs currently but needs expansion for future features
+- [ ] more testing
+- [ ] Travis CI
+- [ ] general refactoring
+
+## Building and running on localhost
+
+First install dependencies:
+
+```sh
+npm install
+```
+
+To create a production build:
+
+```sh
+npm run build
+```
+
+## Running production build
+
+```sh
+npm start
+```
+
+## Running development build
+```sh
+npm run dev
+```
+
+## Environment variables
+```sh
+PG_URI
+SITE_LOGIN_PASSWORD
+JWT_PRIVATE_KEY
+RECAPTCHA_SECRET
+NODE_ENV (set to blank)
+PORT
+```
