@@ -1,5 +1,5 @@
 # ChristmasListv2
-Ispired by my previous christmasList project.
+Inspired by my previous christmasList project.
 
 My family needed a way to share christmas lists with each other so I made this:
 
