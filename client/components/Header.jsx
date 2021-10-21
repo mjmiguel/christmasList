@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import stylesheet
 // import ./scss/main.scss
 
-const Header = props => {
+const Header = (props) => {
   return (
     <header>
       <Link to="/">

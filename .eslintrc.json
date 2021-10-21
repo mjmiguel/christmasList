@@ -6,15 +6,10 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "airbnb",
-    "airbnb/hooks",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["airbnb", "airbnb/hooks", "prettier", "prettier/react"],
   "plugins": ["prettier"],
   "parserOptions": {
-    "ecmaFeatures": {"jsx": true}
+    "ecmaFeatures": { "jsx": true }
   },
   "rules": {
     "prettier/prettier": ["warn"],
@@ -26,11 +21,7 @@
     "no-useless-call": "error",
     "prefer-exponentiation-operator": "error",
     "prefer-regex-literals": "error",
-    "quotes": [
-      "error",
-      "single",
-      { "avoidEscape": true, "allowTemplateLiterals": false }
-    ],
+    "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": false }],
     "import/prefer-default-export": "off",
     "react/function-component-definition": [
       "error",
@@ -62,9 +53,6 @@
     "react/no-adjacent-inline-elements": "error",
     "react/no-direct-mutation-state": "error",
     "react/no-multi-comp": "error",
-    "react/prop-types": [
-      "error",
-      { "skipUndeclared": true }
-    ]
+    "react/prop-types": ["error", { "skipUndeclared": true }]
   }
 }
