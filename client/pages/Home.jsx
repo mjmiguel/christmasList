@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import fetch from 'node-fetch';
 import dog from '../assets/splash.png';
 
 import UserTable from '../components/UsersTable';
 import QueryBox from '../components/QueryBox';
+import Spinner from '../components/Spinner';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      usersFetched: false,
-      users: null,
-    };
-  }
+const Home = props => {
 
-  // todo: add environment variable for absolute path during testing
-  componentDidMount() {
+  const [usersFetched, setUsersFetched] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
     if (process.env.NODE_ENV !== 'test') {
       // get initial list of users
       fetch('/users')
         .then((res) => res.json())
         .then((users) => {
-          this.setState({ usersFetched: true, users });
+          setUsersFetched(true);
+          setUsers(users);
         })
-        .catch((err) => console.log('Home.componentDidMount: get users: ERROR: ', err));
+        .catch((err) => console.log('Home.useEffect: get users: ERROR: ', err));
     }
-  }
-
-  render() {
-    const { users, usersFetched } = this.state;
+  }, []);
 
     return (
       <div className="main-container">
@@ -50,15 +44,14 @@ class Home extends Component {
           <div className="scroll-down-arrow">➮</div>
         </div>
         <div className="container">
-          <UserTable users={users} usersFetched={usersFetched} />
+          {usersFetched ? <UserTable users={users} />: <Spinner />}
           <div className="scroll-down-arrow">➮</div>
         </div>
         <div className="container">
-          <QueryBox users={users} />
+          {usersFetched ? <QueryBox users={users} /> : <Spinner />}
         </div>
       </div>
     );
-  }
 }
 
 export default Home;
