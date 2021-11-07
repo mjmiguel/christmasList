@@ -3,18 +3,10 @@
 import React, { useState } from 'react';
 import EditorJs from 'react-editor-js';
 import Paragraph from '@editorjs/paragraph';
-import bubs from '../assets/bubs.png';
 import { EDITOR_JS_TOOLS } from '../editorTools';
 
 const QueryBox = (props) => {
   const { users } = props;
-  if (!users) {
-    return (
-      <div>
-        <img alt="bubs" className="loading" height="200px" src={bubs} width="200px" />
-      </div>
-    );
-  }
   const [user, setUser] = useState(users[0].name);
   const [userList, setUserList] = useState(null);
   const mappedLists = users.reduce((acc, curr) => {
@@ -24,10 +16,10 @@ const QueryBox = (props) => {
 
   // create dropdown options from fetched users
   const options = [];
-  users.forEach((user) => {
+  users.forEach((u) => {
     options.push(
-      <option id={user.user_id} value={user.name}>
-        {user.name}
+      <option id={u.user_id} value={u.name}>
+        {u.name}
       </option>,
     );
   });

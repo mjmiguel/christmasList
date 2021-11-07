@@ -8,7 +8,7 @@ const UsersTable = (props) => {
   const rows = users.map((user) => (
     <tr className="table-row">
       <td>{user.name}</td>
-      <td> ----------> </td>
+      <td> {'---------->'} </td>
       <td>{user.giftee}</td>
     </tr>
   ));
@@ -21,7 +21,7 @@ const UsersTable = (props) => {
             <th>
               <h3>Gifter</h3>
             </th>
-            <th></th>
+            <th />
             <th>
               <h3>Giftee</h3>
             </th>
