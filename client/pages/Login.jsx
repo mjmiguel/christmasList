@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import fetch from 'node-fetch';
 import { useAuth } from '../context/auth';
+import Spinner from '../components/Spinner';
 
 const Login = (props) => {
   const [password, setPassword] = useState('');
   const [authValidation, setAuthValidation] = useState(null);
   const [lenValidation, setLenValidation] = useState(true);
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   // referrer if trying to access page other than '/'
   const referer = '/' || props.location.state.referer;
@@ -21,7 +24,7 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (process.env !== 'test') {
-      if (password.length > 0) {
+      if (password.length > 3) {
         setLenValidation(true);
         const options = {
           method: 'POST',
@@ -39,7 +42,12 @@ const Login = (props) => {
               setTokenVerified(true);
               setAuthValidation(true);
             } else {
-              setAuthValidation(false);
+              setLoading(true);
+              setAttemptCount(attemptCount + 1);
+              setTimeout(() => {
+                setLoading(false);
+                setAuthValidation(false);
+              }, 3000);
             }
           })
           .catch((error) => {
@@ -60,33 +68,38 @@ const Login = (props) => {
 
   return (
     <div className="container">
-      <form
-        id="login-form"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <label htmlFor="password">password:</label>
-        <br />
-        <input
-          autoFocus="true"
-          className="form-control"
-          value={password}
-          type="password"
-          id="login-password"
-          name="login-password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setAuthValidation(null);
-            setLenValidation(true);
+      {attemptCount >= 3 ? (
+        <div>too many attempts</div>
+      ) : (
+        <form
+          id="login-form"
+          onSubmit={(e) => {
+            handleSubmit(e);
           }}
-        />
-        {lenValidation ? null : <div>probably not a valid password</div>}
-        {authValidation === false ? <div>incorrect password</div> : null}
-        <br />
-        <br />
-        <input type="submit" value="submit" />
-      </form>
+        >
+          <label htmlFor="password">password:</label>
+          <br />
+          <input
+            autoFocus="true"
+            className="form-control"
+            id="login-password"
+            name="login-password"
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setAuthValidation(null);
+              setLenValidation(true);
+            }}
+          />
+          {loading ? <Spinner /> : null}
+          {lenValidation ? null : <div>probably not a valid password</div>}
+          {authValidation === false && !loading ? <div>incorrect password</div> : null}
+          <br />
+          <br />
+          <input type="submit" value="submit" />
+        </form>
+      )}
     </div>
   );
 };

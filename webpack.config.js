@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: module.exports.mode === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js',
-    publicPath: '/build',
+    publicPath: '/build/',
   },
   module: {
     rules: [
@@ -55,6 +55,7 @@ module.exports = {
       '/users': 'http://localhost:3000',
       '/auth': 'http://localhost:3000',
     },
+    port: 8080,
   },
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
