@@ -1,6 +1,6 @@
 {
-  "name": "solo-project",
-  "version": "1.0.0",
+  "name": "christmas-list",
+  "version": "1.0.1",
   "description": "",
   "main": "./client/index.js",
   "scripts": {
