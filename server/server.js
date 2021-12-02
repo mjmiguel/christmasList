@@ -43,6 +43,7 @@ app.use('*', (req, res) => {
 });
 
 // Global error handler with nice messages
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught middleware error',
@@ -63,6 +64,7 @@ app.get('/*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });
 
 module.exports = app;

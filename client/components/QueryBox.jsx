@@ -1,20 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-import bubs from '../assets/bubs.png';
 import EditorJs from 'react-editor-js';
-import { EDITOR_JS_TOOLS } from '../editorTools';
 import Paragraph from '@editorjs/paragraph';
+import { EDITOR_JS_TOOLS } from '../editorTools';
 
 const QueryBox = (props) => {
   const { users } = props;
-  if (!users) {
-    return (
-      <div>
-        <img className="loading" src={bubs} alt="bubs" height="200px" width="200px" />
-      </div>
-    );
-  }
   const [user, setUser] = useState(users[0].name);
   const [userList, setUserList] = useState(null);
   const mappedLists = users.reduce((acc, curr) => {
@@ -24,10 +16,10 @@ const QueryBox = (props) => {
 
   // create dropdown options from fetched users
   const options = [];
-  users.forEach((user) => {
+  users.forEach((u) => {
     options.push(
-      <option id={user.user_id} value={user.name}>
-        {user.name}
+      <option id={u.user_id} value={u.name}>
+        {u.name}
       </option>,
     );
   });
@@ -44,7 +36,7 @@ const QueryBox = (props) => {
       <form id="queryBox" onSubmit={handleSubmit}>
         <label htmlFor="list">View a wishlist</label>
         <br />
-        <select id="list" className="form-control" onChange={(e) => setUser(e.target.value)}>
+        <select className="form-control" id="list" onChange={(e) => setUser(e.target.value)}>
           {options}
         </select>
         <br />
@@ -54,16 +46,16 @@ const QueryBox = (props) => {
           {userList && (
             <div className="list-card">
               <EditorJs
-                holder="list-card-list"
-                enableReInitialize={true}
+                enableReInitialize
+                readOnly
                 data={JSON.parse(userList)}
                 // paragraph with alignment does not support readonly
                 // replacing here with default paragraph
-                tools={{ ...EDITOR_JS_TOOLS, paragraph: { class: Paragraph } }}
-                readOnly={true}
+                holder="list-card-list"
                 minHeight={0}
+                tools={{ ...EDITOR_JS_TOOLS, paragraph: { class: Paragraph } }}
               >
-                <section id="list-card-list" style={{ display: 'flex' }}></section>
+                <section id="list-card-list" style={{ display: 'flex' }} />
               </EditorJs>
             </div>
           )}

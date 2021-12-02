@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // import stylesheet
 // import ./scss/main.scss
 
-const Footer = props => {
+const Footer = (props) => {
   return (
     <footer>
       <Link to="/about">

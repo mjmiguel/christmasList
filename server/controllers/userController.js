@@ -9,7 +9,8 @@ userController.getAllUsers = (req, res, next) => {
     .then((users) => {
       res.locals.users = users.rows;
       next();
-    }).catch((err) => next(err));
+    })
+    .catch((err) => next(err));
 };
 
 //  get a specific person from req.params
@@ -22,25 +23,27 @@ userController.getUser = (req, res, next) => {
     .then((users) => {
       res.locals.users = users.rows;
       next();
-    }).catch((err) => next(err));
+    })
+    .catch((err) => next(err));
 };
 
 //  update wishlist
 userController.updateWishList = (req, res, next) => {
   const { userToSend, userListToSend } = req.body;
-  const queryString = 'UPDATE users SET wishlist = $1 WHERE name = $2 RETURNING name, wishlist AS new_wishlist';
+  const queryString =
+    'UPDATE users SET wishlist = $1 WHERE name = $2 RETURNING name, wishlist AS new_wishlist';
   const params = [userListToSend, userToSend];
   console.log('req body ', req.body);
   db.query(queryString, params)
     .then((updatedUser) => {
       res.locals.user = updatedUser.rows[0];
       next();
-    }).catch((err) => next(err));
+    })
+    .catch((err) => next(err));
 };
 
 userController.addUser = (req, res, next) => {
   // add user
-
 };
 
 module.exports = userController;

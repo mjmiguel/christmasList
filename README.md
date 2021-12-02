@@ -1,4 +1,5 @@
 # ChristmasListv2
+
 Inspired by my previous christmasList project.
 
 My family needed a way to share christmas lists with each other so I made this:
@@ -15,6 +16,7 @@ Currently deployed via AWS
 - [x] bcrypt
 
 Todo:
+
 - [ ] modularize SCSS
 - [ ] improve user model - serves needs currently but needs expansion for future features
 - [ ] more testing
@@ -42,11 +44,13 @@ npm start
 ```
 
 ## Running development build
+
 ```sh
 npm run dev
 ```
 
 ## Environment variables
+
 ```sh
 PG_URI
 SITE_LOGIN_PASSWORD
