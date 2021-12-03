@@ -1,7 +1,7 @@
-const db = require('../models/userModel');
 const bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
+const db = require('../models/userModel');
 require('dotenv').config();
 
 const authController = {};
@@ -64,7 +64,7 @@ authController.verifyToken = (req, res, next) => {
     if (err) next({ location: 'verifyToken', ...err });
     console.log('decoded', decoded);
     // verify token and confirm signature
-    if (decoded && (decoded['I'] = 'amCool')) {
+    if (decoded && (decoded.I = 'amCool')) {
       res.locals.tokenVerified = true;
       next();
     } else {
