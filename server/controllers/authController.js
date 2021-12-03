@@ -30,7 +30,7 @@ authController.updatePassword = (req, res, next) => {
 
 authController.checkLogin = async (req, res, next) => {
   const { password } = req.body;
-  const queryString = 'SELECT * FROM users WHERE id=1';
+  const queryString = 'SELECT * FROM users WHERE id=2';
 
   // get one user to compare password
   const user = await db.query(queryString);
