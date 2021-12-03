@@ -9,7 +9,7 @@ const Header = (props) => {
   return (
     <header>
       <Link to="/">
-        <h1>Christmas 2020</h1>
+        <h1>Christmas 2021</h1>
       </Link>
     </header>
   );
