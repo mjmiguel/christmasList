@@ -1,6 +1,12 @@
 # Changelog
 All changes to the project will be documented in this file.
 
+## [1.1.0] - 2021-12-19
+### Added
+- visual indicator of giftee list submission status
+### Updated
+- scroll down indicator (arrow)
+
 ## [1.0.3] - 2021-12-03
 ### Updated
 - header to 2021
