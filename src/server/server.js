@@ -22,21 +22,21 @@ app.use('/auth', authRouter);
 
 // statically serve everything in the build folder on the route '/build'
 // bundle.js is served from /build so need to point browser there with this route
-app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use('/build', express.static(path.join(__dirname, '../../build')));
 
 // respond with main app
 app.get('/', (req, res) => {
   if (NODE_ENV === 'production') {
-    res.status(200).sendFile(path.resolve(__dirname, '../build/index.html'));
+    res.status(200).sendFile(path.resolve(__dirname, '../../build/index.html'));
   } else {
-    res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+    res.status(200).sendFile(path.resolve(__dirname, '../../index.html'));
   }
 });
 
 // handle requests for everything else (404)
 app.use('*', (req, res) => {
   if (NODE_ENV === 'production') {
-    res.status(200).sendFile(path.resolve(__dirname, '../build/index.html'));
+    res.status(200).sendFile(path.resolve(__dirname, '../../build/index.html'));
   } else {
     res.status(404).send('404 Not Found :(');
   }
