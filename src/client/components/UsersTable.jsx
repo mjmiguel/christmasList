@@ -4,14 +4,24 @@ import React from 'react';
 
 const UsersTable = (props) => {
   const { users } = props;
+
+  const gifteesToObj = users.reduce((prev, curr) => {
+    prev[curr.name] = { ...curr };
+    return prev;
+  }, {});
+
   // loop through users and add each to the array to be displayed
-  const rows = users.map((user) => (
-    <tr key={user.id} className="table-row">
-      <td>{user.name}</td>
-      <td> {'---------->'} </td>
-      <td>{user.giftee}</td>
-    </tr>
-  ));
+  const rows = users.map((user) => {
+    const gifteeStatus = gifteesToObj[user.giftee].wishlist.includes('no list yet :)');
+    return (
+      <tr key={user.id} className="table-row">
+        <td>{user.name}</td>
+        <td> {'---------->'} </td>
+        <td>{user.giftee}</td>
+        <td>{gifteeStatus ? '   ' : ' ☑️ '}</td>
+      </tr>
+    );
+  });
 
   return (
     <div>
@@ -25,6 +35,7 @@ const UsersTable = (props) => {
             <th>
               <h3>Giftee</h3>
             </th>
+            <th />
           </thead>
           <tbody>{rows}</tbody>
         </table>
