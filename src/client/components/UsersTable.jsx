@@ -6,7 +6,7 @@ const UsersTable = (props) => {
   const { users } = props;
   // loop through users and add each to the array to be displayed
   const rows = users.map((user) => (
-    <tr className="table-row">
+    <tr key={user.id} className="table-row">
       <td>{user.name}</td>
       <td> {'---------->'} </td>
       <td>{user.giftee}</td>
