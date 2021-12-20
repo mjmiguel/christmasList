@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './client/index.js',
+  entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: module.exports.mode === 'production' ? '[name].[chunkhash].js' : '[name].[hash].js',
