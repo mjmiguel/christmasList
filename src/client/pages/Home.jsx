@@ -37,11 +37,11 @@ const Home = (props) => {
             <button type="submit">Submit your List</button>
           </Link>
         </section>
-        <div className="scroll-down-arrow">➮</div>
+        <div className="scroll-down-arrow">👇</div>
       </div>
       <div className="container">
         {users ? <UserTable users={users} /> : <Spinner />}
-        <div className="scroll-down-arrow">➮</div>
+        <div className="scroll-down-arrow">👇</div>
       </div>
       <div className="container">{users ? <QueryBox users={users} /> : <Spinner />}</div>
     </div>
